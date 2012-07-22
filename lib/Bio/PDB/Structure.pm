@@ -1223,11 +1223,11 @@ __END__
 
 =head1 NAME
 
-Bio::PDB::Structure::Molecule - Perl module for parsing and manipulating Protein Databank (PDB) files
+Bio::PDB::Structure - Perl module for parsing and manipulating Protein Databank (PDB) files
 
 =head1 SYNOPSIS
 
-  use Bio::PDB::Structure::Molecule;
+  use Bio::PDB::Structure;
   
   $mol1= Bio::PDB::Structure::Molecule -> new;
   $mol2= Bio::PDB::Structure::Molecule -> new;
@@ -1243,9 +1243,9 @@ Bio::PDB::Structure::Molecule - Perl module for parsing and manipulating Protein
 =head1 DESCRIPTION
 
 This module combines tools that are commonly used to analyze proteins and
-nucleic acids from a pdb file stuctures. main benefits of using the module
+nucleic acids from a pdb file stuctures. The main benefits of using the module
 are its ability to parse and print out a pdb structure with minimum effort.
-However in addition to that it is possible to do structural alinments, RMSD
+However in addition to that it is possible to do structural alignments, RMSD
 calculations, atom editons, center of mass calculations, molecule editions
 and so forth. Both Atom objects and Molecule objects are defined within
 this module. 
@@ -1258,91 +1258,107 @@ this module.
 
 =item * $object->type("ATOM")
 
-Get/set the atom's type
+    Get/set the atom's type
+
 
 =item * $object->number
 
 =item * $object->number(50)
 
-Get/set the atom's number
+    Get/set the atom's number
+
 
 =item * $object->name
 
 =item * $object->name("CA")
 
-Get/set the atom's name
+    Get/set the atom's name
+
 
 =item * $object->chain
 
 =item * $object->chaini("X")
 
-Get/set the atom's chain 
+    Get/set the atom's chain 
+
 
 =item * $object->chain
 
 =item * $object->residue_number(100)
 
-Get/set the atom's residue number 
+    Get/set the atom's residue number 
+
 
 =item * $object->residue_name
 
 =item * $object->residue_name("ALA")
 
-Get/set the atom's residue name 
+    Get/set the atom's residue name 
+
 
 =item * $object->x
 
 =item * $object->x(5.5)
 
-Get/set the atom's x coordinate 
+    Get/set the atom's x coordinate 
+
 
 =item * $object->y
 
 =item * $object->y(5.5)
 
-Get/set the atom's y coordinate 
+    Get/set the atom's y coordinate 
+
 
 =item * $object->z
 
 =item * $object->z(5.5)
 
-Get/set the atom's z coordinate 
+    Get/set the atom's z coordinate 
+
 
 =item * $object->occupancy
 
 =item * $object->occupancy(1.0)
 
-Get/set the atom's occupancy
+    Get/set the atom's occupancy
+
 
 =item * $object->beta
 
 =item * $object->beta(0.3)
 
-Get/set the atom's temperature factor
+    Get/set the atom's temperature factor
+
 
 =item * $object->alt
 
 =item * $object->alt("I")
 
-Get/set the atom's alternate location field
+    Get/set the atom's alternate location field
+
 
 =item * $object->insertion_code
 
 =item * $object->insertion_code("K")
 
-Get/set the atom's insertion code
+    Get/set the atom's insertion code
+
 
 =item * distance Bio::PDB::Structure::Atom($atom1,$atom2)
 
-Compute the distance between atom1 and atom2
+    Compute the distance between atom1 and atom2
+
 
 =item * distance Bio::PDB::Structure::Atom($atom1,$atom2,$atom3)
 
-Compute the angle in degrees sustended by  atom1--atom2--atom3
+    Compute the angle in degrees sustended by  atom1--atom2--atom3
+
 
 =item * dihedral Bio::PDB::Structure::Atom($atom1,$atom2,$atom3,$atom4)
 
-Compute the dihedral in degrees sustended by atom1--atom2--atom3--atom4
+    Compute the dihedral in degrees sustended by atom1--atom2--atom3--atom4
+
 
 =back
 
@@ -1353,92 +1369,111 @@ Compute the dihedral in degrees sustended by atom1--atom2--atom3--atom4
 
 =item * models Bio::PDB::Structure::Molecule "file.pdb"
 
-Return the number of models in a pdb file
+    Return the number of models in a pdb file
+
 
 =item * $object->read("file.pdb")
 
 =item * $object->read("file.pdb",i)
 
-Read the contents of file.pdb into a molecule. If a second numeric argument is
-specified it will read  model (i+1) from the file  (counting from zero).
+    Read the contents of file.pdb into a molecule. If a second numeric argument is
+    specified it will read  model (i+1) from the file  (counting from zero).
+
 
 =item * $object->print
 
 =item * $object->print("file.pdb")
 
-Write the molecule to STDOUT when no argument is provided or to a file when an
-argument is provided.
+    Write the molecule to STDOUT when no argument is provided or to a file when an
+    argument is provided.
+
 
 =item * $object->size
 
-Return the number of atoms contained in the molecule.
+    Return the number of atoms contained in the molecule.
+
 
 =item * $object->atom(5)
 
-Return the atom located at position five (starting from zero).
+    Return the atom located at position five (starting from zero).
+
 
 =item * $object->push(atom)
 
-Push atom object at the end of the molecule.
+    Push atom object at the end of the molecule.
+
 
 =item * $object->proten
 
-Return a molecule that only contains atoms with type ATOM
+    Return a molecule that only contains atoms with type ATOM
+
 
 =item * $object->hetatoms
 
-Retruns a molecule that only contains HETATM records
+    Retruns a molecule that only contains HETATM records
+
 
 =item * $object->alpha
 
-Returns a molecule with the alpha carbons
+    Returns a molecule with the alpha carbons
+
 
 =item * $object->backbone
 
-Returns a molecule with the backbone of a protein
+    Returns a molecule with the backbone of a protein
+
 
 =item * $object->sidechains
 
-Returns a molecule with the sidechains of a protein
+    Returns a molecule with the sidechains of a protein
+
 
 =item * $object->list_atoms('logical expression')
 
-Creates a molecule with a custom atom selection. The logical expression must use
-Perls logical operators and the properties of atoms. For example to select all
-atoms from residue 50 onwards and only belonging to ALA residues on would use
-the logical expression: 'residue_number >= 50 && residue_name eq "ALA"'
+    Creates a molecule with a custom atom selection. The logical expression must use
+    Perl's logical operators and the properties of atoms. For example to select all
+    atoms from residue 50 onwards and only belonging to ALA residues on would use
+    the logical expression: 'residue_number >= 50 && residue_name eq "ALA"'
+
 
 =item * $object->center
 
-Return an atom object that respresents the centroid for the given molecule.
+    Return an atom object that respresents the centroid for the given molecule.
+
 
 =item * $object->cm
 
-Return an atom object that sits at the center of mass for the given molecule.
+    Return an atom object that sits at the center of mass for the given molecule.
+
 
 =item * $object->translate(x,y,z)
 
-Translate the molecule as a rigid object by x,y,z.
+    Translate the molecule as a rigid object by x,y,z.
+
 
 =item * $object->rotate(u11,u12,u13,u21,u22,u23,u31,u32,u33)
 
-Do a rigid rotation of the molecule using matrix u.
+    Do a rigid rotation of the molecule using matrix u.
+
 
 =item * $object->rotate_translate(@matrix,@vector)
 
-Apply a rotation matrix followed by a translation. To facilitate structural
-supperpositions.
+    Apply a rotation matrix followed by a translation. To facilitate structural
+    supperpositions.
+
 
 =item * $object->superpose($reference)
 
-Find the transformation that overlaps $object on to $reference. The resulting
-transformation is in the format @transformation= (@matrix,@vector). Molecules
-must have the same number of atoms.
+    Find the transformation that overlaps $object on to $reference. The resulting
+    transformation is in the format @transformation= (@matrix,@vector). Molecules
+    must have the same number of atoms.
+
 
 =item * $object->rmsd($reference)
 
-Compute the RMSD between two molecules. The molecules must have the same number
-of atoms
+    Compute the RMSD between two molecules. The molecules must have the same number
+    of atoms
+
 
 =back
 
